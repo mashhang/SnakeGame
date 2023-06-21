@@ -12,28 +12,6 @@ document.addEventListener('wheel', function (e) {
     }
 });
 
-// Add the touch event handling code
-const hammer = new Hammer(canvas);
-
-hammer.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
-
-hammer.on("swipeleft", function () {
-    changeDirection({ keyCode: 37 });
-});
-
-hammer.on("swiperight", function () {
-    changeDirection({ keyCode: 39 });
-});
-
-hammer.on("swipeup", function () {
-    changeDirection({ keyCode: 38 });
-});
-
-hammer.on("swipedown", function () {
-    changeDirection({ keyCode: 40 });
-});
-
-
 //GAMEMODE
 let gameMode; // Add this variable
 
@@ -110,8 +88,7 @@ function handleColorButtonClick(event) {
 
 // Start the game
 function init() {
-
-
+    
     document.addEventListener("keydown", function (event) {
         if (event.key === "p" || event.key === "P" || event.key === "Escape") {
             togglePause();
@@ -445,4 +422,3 @@ function playBiteSound() {
     biteSound.currentTime = 0; // Reset the audio to the beginning
     biteSound.play();
 }
-
