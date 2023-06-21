@@ -229,62 +229,29 @@ function togglePause() {
     }
 }
 
-// Touch event variables
-let touchStartX = 0;
-let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
+// Create a new Hammer Manager instance
+const swipeHandler = new Hammer(document.body);
 
-// Add touch event listeners
-document.addEventListener("touchstart", handleTouchStart, false);
-document.addEventListener("touchmove", handleTouchMove, false);
-document.addEventListener("touchend", handleTouchEnd, false);
+// Enable horizontal and vertical swipes
+swipeHandler.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
 
-// Touch start event handler
-function handleTouchStart(event) {
-    touchStartX = event.touches[0].clientX;
-    touchStartY = event.touches[0].clientY;
-}
+// Listen for swipe events
+swipeHandler.on('swipeleft', () => {
+    changeDirection({ keyCode: 37 }); // Simulate left arrow key press
+});
 
-// Touch move event handler
-function handleTouchMove(event) {
-    event.preventDefault(); // Prevent scrolling while swiping
-}
+swipeHandler.on('swiperight', () => {
+    changeDirection({ keyCode: 39 }); // Simulate right arrow key press
+});
 
-// Touch end event handler
-function handleTouchEnd(event) {
-    touchEndX = event.changedTouches[0].clientX;
-    touchEndY = event.changedTouches[0].clientY;
-    handleSwipeGesture();
-}
+swipeHandler.on('swipeup', () => {
+    changeDirection({ keyCode: 38 }); // Simulate up arrow key press
+});
 
-// Handle swipe gesture
-function handleSwipeGesture() {
-    const MIN_SWIPE_DISTANCE = 20; // Minimum distance required for a swipe gesture
+swipeHandler.on('swipedown', () => {
+    changeDirection({ keyCode: 40 }); // Simulate down arrow key press
+});
 
-    const swipeX = touchEndX - touchStartX;
-    const swipeY = touchEndY - touchStartY;
-
-    if (Math.abs(swipeX) > Math.abs(swipeY)) {
-        // Horizontal swipe
-        if (swipeX > MIN_SWIPE_DISTANCE) {
-            // Swipe right
-            changeDirection({ keyCode: 39 }); // Simulate right arrow key press
-        } else if (swipeX < -MIN_SWIPE_DISTANCE) {
-            // Swipe left
-            changeDirection({ keyCode: 37 }); // Simulate left arrow key press
-        }
-    } else {
-        // Vertical swipe
-        if (swipeY > MIN_SWIPE_DISTANCE) {
-            // Swipe down
-            changeDirection({ keyCode: 40 }); // Simulate down arrow key press
-        } else if (swipeY < -MIN_SWIPE_DISTANCE) {
-            // Swipe up
-            changeDirection({ keyCode: 38 }); // Simulate up arrow key press
-        }
-    }
-}
 
 
 
