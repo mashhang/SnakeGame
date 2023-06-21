@@ -4,20 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" type="text/css" href="design.css">
   <title>Snake Game</title>
 </head>
 
 <body>
-  <div id="menu">
+  <div id="menu" class="background-link">
     <ul>
-      <li id="startgamelist"><a href="#" onclick="modes()">Start Game</a></li>
+      <li><a href="#" onclick="modes()">Start Game</a></li>
       <li><a href="#" onclick="gameOPTION()">Options</a></li>
     </ul>
   </div>
 
-  <div id="game-mode">
+  <div id="game-mode" class="background-link">
     <ul>
       <div id="game-container">
         <li><a href="#" onclick="selectGameMode('classic')">Classic Mode</a></li>
@@ -27,28 +27,24 @@
     </ul>
   </div>
 
-  <div id="option">
-    <h5><a href="#" onclick="back()">Back</a></h5>
+  <div id="option" class="background-option">
+    <p><a href="#" onclick="back()">Back</a></p>
     <h1>OPTIONS</h1>
     <ul>
-      <div class="slidecontainer">
-        <li>
+        <li id="label">
           <h2>Speed:</h2>
         </li>
         <span id="rangeValue">5</span>
         <input id="speed-slider" class="range" type="range" value="5" min="1" max="20" step="0.1" value="5"
           onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></input>
-      </div>
-
 
       <li>
-        <h2>Snake's Skin:</h2>
+        <h2>Snake's Color:</h2>
       </li>
 
       <div id="snake-color">
-        <li><strong>Snake's Color:</strong></li>
+        <h2>Select a color:</h2>
         <div id="color-box">
-          <h3>Select a color:</h3>
           <div class="color" style="background-color: yellow;"></div>
           <div class="color" style="background-color: green;"></div>
           <div class="color" style="background-color: blue;"></div>
@@ -58,7 +54,7 @@
   </div>
 
   <!-- Displays ui in game -->
-  <div id="score">
+  <div id="score" class="background-game">
     <h5><a href="#" onclick="togglePause()">Pause</a></h5>
     <h2>Current Score: <span id="current-score">0</span></h2>
     <h2>High Score: <span id="max-score">0</span></h2>
@@ -70,12 +66,10 @@
     <h1>GAME MENU</h1>
     <ul>
       <li><a href="#" id="pause-play-button" onclick="togglePause()">Play</a></li>
-      <li><a href="#">Options</a></li>
       <li><a href="#" onclick="showmenu()">Exit</a></li>
     </ul>
   </div>
 
-  <canvas id="gameOption"></canvas>
   <canvas id="gameCanvas"></canvas>
   <script src="script.js"></script>
 

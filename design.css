@@ -1,0 +1,311 @@
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    font-size: 4vw;
+    color: black;
+}
+
+a:hover {
+    color: #bd4646;
+}
+
+h1 {
+    font-size: 3vw;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2vw;
+}
+
+/* ------------------------------------------------------------------ */
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* MAIN MENU */
+#menu {
+    position: fixed;
+    /* Position the menu relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.background-link {
+    background-image: url("menu.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    height: 100%;
+}
+
+#menu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: center;
+    position: absolute;
+    top: 63.5%;
+    /* Position the menu in the center vertically */
+    left: 50%;
+    /* Position the menu in the center horizontally */
+    transform: translate(-50%, -50%);
+    /* Center the menu */
+}
+
+#menu li {
+    margin-top: 7.7vh;
+}
+
+#menu a {
+    color: white;
+}
+
+#menu a:hover {
+    color: #bd4646;
+}
+
+/* ------------------------------------------------------------------ */
+
+/* GAME MODE */
+#game-mode {
+    display: none;
+    position: fixed;
+    /* Position the menu relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#game-mode ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: center;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#timelimitedchallenge {
+    font-size: 2.3vw;
+}
+
+#game-mode li {
+    margin-top: 9.7vh;
+}
+
+/* ------------------------------------------------------------------ */
+
+#game-container {
+    margin-top: 1em;
+    display: inline-block; /* Add this line to make the container occupy only the necessary space */
+}
+
+#game-container > li {
+    margin-bottom: 4em;
+} 
+
+#game-container a {
+    color: white;
+}
+
+#game-container a:hover {
+    color: #bd4646;
+}
+
+#time-limited {
+    font-size: 1.5rem;
+}
+
+canvas {
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+    width: 100%;
+    height: 100%;
+}
+
+#gameCanvas {
+    position: relative;
+    display: flex;
+    display: none;
+    background-color: white;
+    height: 90%;
+    width: 45%;
+}
+
+.background-game {
+    background-image: url("game.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    height: 100%;
+}
+
+#score {
+    display: none;
+    padding-right: 5%;
+
+    position: fixed;
+    /* Position the menu relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#score h5 {
+    position: relative;
+    top: 35%;
+    left: 67%;
+    transform: translate(-50%, -50%);
+}
+
+#score h2 {
+    text-align: center;
+    position: relative;
+    top: 32%;
+    left: 23%;
+    transform: translate(-50%, -50%);
+}
+
+#pause-menu {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#pause-menu a {
+    font-size: 3vw;
+}
+
+#pause-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: center;
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ------------------------------------------------------------------ */
+
+
+/* OPTIONS */
+#option {
+    display: none;
+    position: fixed;
+    /* Position the menu relative to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.background-option {
+    background-image: url("option.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    height: 100%;
+}
+
+#option ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-align: center;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#option p {
+    text-align: center;
+    margin-top: 31vh;
+    margin-bottom: -28vh;
+    padding: 0;
+}
+
+#option a {
+    color: white;
+}
+
+#option a:hover {
+    color: #bd4646;
+}
+
+#option h1 {
+    margin: 30vh 0 0 0;
+}
+
+#label {
+    margin-top: -8vh;
+}
+
+#option h2 {
+    margin-bottom: -0vh;
+    text-align: center;
+}
+
+#snake-color h2 {
+    font-size: 1.5vw;
+}
+
+#rangeValue {
+    font-size: 1vw;
+}
+
+#speed-slider {
+    width: 10vw;
+    max-height: 1vh;
+    min-height: 1vh;
+}
+
+#snake-color h3 {
+    font-size: 2vw;
+  }
+
+#color-box > h3 {
+    font-size: 2vw;
+}
+
+#snake-color>li {
+    font-size: 2vw;
+}
+
+.color {
+    display: inline-block;
+    width: 8vh;
+    height: 4vw;
+    margin: 1%;
+    cursor: pointer;
+    background-color: transparent;
+}

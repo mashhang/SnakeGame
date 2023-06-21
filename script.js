@@ -1,6 +1,20 @@
+document.addEventListener('keydown', function (e) {
+    // Prevent zooming on Chrome (Ctrl + "+", Ctrl + "-", Ctrl + "0")
+    if ((e.ctrlKey && (e.key === '=' || e.key === '-' || e.key === '0')) || e.metaKey) {
+        e.preventDefault();
+    }
+});
+
+document.addEventListener('wheel', function (e) {
+    // Prevent zooming on Chrome (mouse wheel)
+    if (e.ctrlKey || e.metaKey) {
+        e.preventDefault();
+    }
+});
+
+
 //GAMEMODE
 let gameMode; // Add this variable
-
 
 // GAME TIME
 let countdownTime = 5; // Change the value to the desired countdown time in seconds
@@ -76,6 +90,13 @@ function handleColorButtonClick(event) {
 // Start the game
 function init() {
 
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "p" || event.key === "P" || event.key === "Escape") {
+            togglePause();
+        }
+    });
+    
     var song = document.getElementById("song");
     song.currentTime = 0; // Reset the audio to the beginning
     song.play();
@@ -131,6 +152,7 @@ function updateScore() {
 // }
 
 function startGame() {
+
     if (!isPaused) {
         gameInterval = setInterval(function () {
             clearCanvas();
@@ -289,8 +311,8 @@ function updateScore() {
 function generateFood() {
     foodX = getRandomCoordinate();
     foodY = getRandomCoordinate();
-// Play the sound effect
-playBiteSound(); // Play the bite sound effect
+    // Play the sound effect
+    playBiteSound(); // Play the bite sound effect
     // Check if the food is generated on top of the snake, and if so, regenerate it
     for (let i = 0; i < snake.length; i++) {
         if (foodX === snake[i].x && foodY === snake[i].y) {
@@ -350,6 +372,7 @@ function resetGame() {
         startCountdown();
     } else {
         countdownSeconds = Infinity;
+        updateTimerDisplay();
         snake = [{ x: 0, y: 0 }];
         dx = 0;
         dy = 0;
@@ -399,4 +422,4 @@ function playBiteSound() {
     var biteSound = document.getElementById("bite-sound");
     biteSound.currentTime = 0; // Reset the audio to the beginning
     biteSound.play();
-  }  
+}  
