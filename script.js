@@ -234,8 +234,8 @@ let touchStartX = 0;
 let touchStartY = 0;
 
 // Add touch event listeners
-canvas.addEventListener("touchstart", handleTouchStart, false);
-canvas.addEventListener("touchend", handleTouchEnd, false);
+document.addEventListener("touchstart", handleTouchStart, false);
+document.addEventListener("touchend", handleTouchEnd, false);
 
 // Touch start event handler
 function handleTouchStart(event) {
