@@ -96,7 +96,7 @@ function init() {
             togglePause();
         }
     });
-    
+
     var song = document.getElementById("song");
     song.currentTime = 0; // Reset the audio to the beginning
     song.play();
@@ -241,6 +241,7 @@ function changeDirection(event) {
     const goingDown = dy === gridSize;
     const goingLeft = dx === -gridSize;
     const goingRight = dx === gridSize;
+    
 
     if (keyPressed === LEFT_KEY && !goingRight) {
         dx = -gridSize;
@@ -262,6 +263,54 @@ function changeDirection(event) {
         dy = gridSize;
     }
 }
+
+// Variables to store touch coordinates
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+// Add touch event listeners
+canvas.addEventListener("touchstart", handleTouchStart, false);
+canvas.addEventListener("touchend", handleTouchEnd, false);
+
+// Touch start event handler
+function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+}
+
+// Touch end event handler
+function handleTouchEnd(event) {
+    touchEndX = event.changedTouches[0].clientX;
+    touchEndY = event.changedTouches[0].clientY;
+
+    // Calculate touch direction
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    // Determine the primary direction of the swipe
+    if (Math.abs(dx) > Math.abs(dy)) {
+        // Horizontal swipe
+        if (dx > 0) {
+            // Swipe to the right
+            changeDirection({ keyCode: 39 }); // Call changeDirection with the right arrow key code
+        } else {
+            // Swipe to the left
+            changeDirection({ keyCode: 37 }); // Call changeDirection with the left arrow key code
+        }
+    } else {
+        // Vertical swipe
+        if (dy > 0) {
+            // Swipe down
+            changeDirection({ keyCode: 40 }); // Call changeDirection with the down arrow key code
+        } else {
+            // Swipe up
+            changeDirection({ keyCode: 38 }); // Call changeDirection with the up arrow key code
+        }
+    }
+}
+
 
 function moveSnake() {
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
