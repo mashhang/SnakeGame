@@ -12,6 +12,27 @@ document.addEventListener('wheel', function (e) {
     }
 });
 
+// Add the touch event handling code
+const hammer = new Hammer(canvas);
+
+hammer.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
+
+hammer.on("swipeleft", function () {
+    changeDirection({ keyCode: 37 });
+});
+
+hammer.on("swiperight", function () {
+    changeDirection({ keyCode: 39 });
+});
+
+hammer.on("swipeup", function () {
+    changeDirection({ keyCode: 38 });
+});
+
+hammer.on("swipedown", function () {
+    changeDirection({ keyCode: 40 });
+});
+
 
 //GAMEMODE
 let gameMode; // Add this variable
@@ -425,24 +446,3 @@ function playBiteSound() {
     biteSound.play();
 }
 
-// Add the touch event handling code
-const canvas = document.getElementById("gameCanvas");
-const hammer = new Hammer(canvas);
-
-hammer.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
-
-hammer.on("swipeleft", function () {
-    changeDirection({ keyCode: 37 });
-});
-
-hammer.on("swiperight", function () {
-    changeDirection({ keyCode: 39 });
-});
-
-hammer.on("swipeup", function () {
-    changeDirection({ keyCode: 38 });
-});
-
-hammer.on("swipedown", function () {
-    changeDirection({ keyCode: 40 });
-});
