@@ -229,41 +229,6 @@ function togglePause() {
     }
 }
 
-function changeDirection(event) {
-    const LEFT_KEY = 37;
-    const RIGHT_KEY = 39;
-    const UP_KEY = 38;
-    const DOWN_KEY = 40;
-
-    const keyPressed = event.keyCode;
-
-    const goingUp = dy === -gridSize;
-    const goingDown = dy === gridSize;
-    const goingLeft = dx === -gridSize;
-    const goingRight = dx === gridSize;
-    
-
-    if (keyPressed === LEFT_KEY && !goingRight) {
-        dx = -gridSize;
-        dy = 0;
-    }
-
-    if (keyPressed === UP_KEY && !goingDown) {
-        dx = 0;
-        dy = -gridSize;
-    }
-
-    if (keyPressed === RIGHT_KEY && !goingLeft) {
-        dx = gridSize;
-        dy = 0;
-    }
-
-    if (keyPressed === DOWN_KEY && !goingUp) {
-        dx = 0;
-        dy = gridSize;
-    }
-}
-
 // Variables to store touch coordinates
 let touchStartX = 0;
 let touchStartY = 0;
@@ -311,6 +276,41 @@ function handleTouchEnd(event) {
     }
 }
 
+
+function changeDirection(event) {
+    const LEFT_KEY = 37;
+    const RIGHT_KEY = 39;
+    const UP_KEY = 38;
+    const DOWN_KEY = 40;
+
+    const keyPressed = event.keyCode;
+
+    const goingUp = dy === -gridSize;
+    const goingDown = dy === gridSize;
+    const goingLeft = dx === -gridSize;
+    const goingRight = dx === gridSize;
+    
+
+    if (keyPressed === LEFT_KEY && !goingRight) {
+        dx = -gridSize;
+        dy = 0;
+    }
+
+    if (keyPressed === UP_KEY && !goingDown) {
+        dx = 0;
+        dy = -gridSize;
+    }
+
+    if (keyPressed === RIGHT_KEY && !goingLeft) {
+        dx = gridSize;
+        dy = 0;
+    }
+
+    if (keyPressed === DOWN_KEY && !goingUp) {
+        dx = 0;
+        dy = gridSize;
+    }
+}
 
 function moveSnake() {
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
