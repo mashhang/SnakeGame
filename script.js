@@ -229,12 +229,15 @@ function togglePause() {
     }
 }
 
-// Variables to store touch coordinates
+// Touch event variables
 let touchStartX = 0;
 let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
 
 // Add touch event listeners
 document.addEventListener("touchstart", handleTouchStart, false);
+document.addEventListener("touchmove", handleTouchMove, false);
 document.addEventListener("touchend", handleTouchEnd, false);
 
 // Touch start event handler
@@ -243,35 +246,46 @@ function handleTouchStart(event) {
     touchStartY = event.touches[0].clientY;
 }
 
+// Touch move event handler
+function handleTouchMove(event) {
+    event.preventDefault(); // Prevent scrolling while swiping
+}
+
 // Touch end event handler
 function handleTouchEnd(event) {
-    const touchEndX = event.changedTouches[0].clientX;
-    const touchEndY = event.changedTouches[0].clientY;
+    touchEndX = event.changedTouches[0].clientX;
+    touchEndY = event.changedTouches[0].clientY;
+    handleSwipeGesture();
+}
 
-    const dx = touchEndX - touchStartX;
-    const dy = touchEndY - touchStartY;
+// Handle swipe gesture
+function handleSwipeGesture() {
+    const MIN_SWIPE_DISTANCE = 20; // Minimum distance required for a swipe gesture
 
-    // Determine the primary direction of the swipe
-    if (Math.abs(dx) > Math.abs(dy)) {
+    const swipeX = touchEndX - touchStartX;
+    const swipeY = touchEndY - touchStartY;
+
+    if (Math.abs(swipeX) > Math.abs(swipeY)) {
         // Horizontal swipe
-        if (dx > 0) {
-            // Swipe to the right
-            changeDirection({ keyCode: 39 }); // Call changeDirection with the right arrow key code
-        } else {
-            // Swipe to the left
-            changeDirection({ keyCode: 37 }); // Call changeDirection with the left arrow key code
+        if (swipeX > MIN_SWIPE_DISTANCE) {
+            // Swipe right
+            changeDirection({ keyCode: 39 }); // Simulate right arrow key press
+        } else if (swipeX < -MIN_SWIPE_DISTANCE) {
+            // Swipe left
+            changeDirection({ keyCode: 37 }); // Simulate left arrow key press
         }
     } else {
         // Vertical swipe
-        if (dy > 0) {
+        if (swipeY > MIN_SWIPE_DISTANCE) {
             // Swipe down
-            changeDirection({ keyCode: 40 }); // Call changeDirection with the down arrow key code
-        } else {
+            changeDirection({ keyCode: 40 }); // Simulate down arrow key press
+        } else if (swipeY < -MIN_SWIPE_DISTANCE) {
             // Swipe up
-            changeDirection({ keyCode: 38 }); // Call changeDirection with the up arrow key code
+            changeDirection({ keyCode: 38 }); // Simulate up arrow key press
         }
     }
 }
+
 
 
 function changeDirection(event) {
