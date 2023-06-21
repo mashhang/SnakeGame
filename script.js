@@ -232,8 +232,6 @@ function togglePause() {
 // Variables to store touch coordinates
 let touchStartX = 0;
 let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
 
 // Add touch event listeners
 canvas.addEventListener("touchstart", handleTouchStart, false);
@@ -247,10 +245,9 @@ function handleTouchStart(event) {
 
 // Touch end event handler
 function handleTouchEnd(event) {
-    touchEndX = event.changedTouches[0].clientX;
-    touchEndY = event.changedTouches[0].clientY;
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
 
-    // Calculate touch direction
     const dx = touchEndX - touchStartX;
     const dy = touchEndY - touchStartY;
 
