@@ -229,32 +229,6 @@ function togglePause() {
     }
 }
 
-// Create a new Hammer Manager instance
-const swipeHandler = new Hammer(document.body);
-
-// Enable horizontal and vertical swipes
-swipeHandler.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
-
-// Listen for swipe events
-swipeHandler.on('swipeleft', () => {
-    changeDirection({ keyCode: 37 }); // Simulate left arrow key press
-});
-
-swipeHandler.on('swiperight', () => {
-    changeDirection({ keyCode: 39 }); // Simulate right arrow key press
-});
-
-swipeHandler.on('swipeup', () => {
-    changeDirection({ keyCode: 38 }); // Simulate up arrow key press
-});
-
-swipeHandler.on('swipedown', () => {
-    changeDirection({ keyCode: 40 }); // Simulate down arrow key press
-});
-
-
-
-
 function changeDirection(event) {
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
@@ -267,7 +241,7 @@ function changeDirection(event) {
     const goingDown = dy === gridSize;
     const goingLeft = dx === -gridSize;
     const goingRight = dx === gridSize;
-    
+
 
     if (keyPressed === LEFT_KEY && !goingRight) {
         dx = -gridSize;
@@ -449,4 +423,26 @@ function playBiteSound() {
     var biteSound = document.getElementById("bite-sound");
     biteSound.currentTime = 0; // Reset the audio to the beginning
     biteSound.play();
-}  
+}
+
+// Add the touch event handling code
+const canvas = document.getElementById("gameCanvas");
+const hammer = new Hammer(canvas);
+
+hammer.get("swipe").set({ direction: Hammer.DIRECTION_ALL });
+
+hammer.on("swipeleft", function () {
+    changeDirection({ keyCode: 37 });
+});
+
+hammer.on("swiperight", function () {
+    changeDirection({ keyCode: 39 });
+});
+
+hammer.on("swipeup", function () {
+    changeDirection({ keyCode: 38 });
+});
+
+hammer.on("swipedown", function () {
+    changeDirection({ keyCode: 40 });
+});
