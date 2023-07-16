@@ -16,7 +16,7 @@ document.addEventListener('wheel', function (e) {
 let gameMode; // Add this variable
 
 // GAME TIME
-let countdownTime = 5; // Change the value to the desired countdown time in seconds
+let countdownTime = 60; // Change the value to the desired countdown time in seconds
 let countdownInterval; // Declare the countdownInterval variable
 let countdownSeconds; // Add this variable
 
@@ -86,9 +86,11 @@ function handleColorButtonClick(event) {
     snakeColor = color;
 }
 
+
+  
+
 // Start the game
 function init() {
-    
     document.addEventListener("keydown", function (event) {
         if (event.key === "p" || event.key === "P" || event.key === "Escape") {
             togglePause();
@@ -98,6 +100,8 @@ function init() {
     var song = document.getElementById("song");
     song.currentTime = 0; // Reset the audio to the beginning
     song.play();
+
+
 
     document.getElementById("game-mode").style.display = "none"; //hide game mode menu
     document.getElementById("pause-menu").style.display = "none"; //hide pause menu
@@ -129,25 +133,6 @@ function updateScore() {
     maxScoreElement.textContent = maxScore;
     countdownElement.textContent = countdownTime; // Display the countdown time
 }
-
-//function to start game with time orig
-// function startGame() {
-//     if (!isPaused) {
-//         startCountdown();
-//         gameInterval = setInterval(function () {
-//             clearCanvas();
-//             moveSnake();
-//             drawSnake();
-//             drawFood();
-//             updateScore();
-
-//             if (gameOver()) {
-//                 updateMaxScore();
-//                 resetGame();
-//             }
-//         }, 1000 / gameSpeed);
-//     }
-// }
 
 function startGame() {
 
@@ -209,19 +194,32 @@ function updateTimerDisplay() {
 
 function togglePause() {
     isPaused = !isPaused;
+
+    const gameCanvas = document.getElementById("gameCanvas");
+    const scorecanvas = document.getElementById("score");
+
+
     if (isPaused) {
+
+        gameCanvas.style.filter = "blur(2vh)"; // Apply blur effect
+        scorecanvas.style.filter = "blur(2vh)";
+
         // // Show pause menu
         document.getElementById("pause-menu").style.display = "block";
-        document.getElementById("score").style.display = "none";
-        document.getElementById("gameCanvas").style.display = "none";
+        document.getElementById("pause-menu").style.zIndex = "1"
+
+        // document.getElementById("score").style.display = "none";
+        // document.getElementById("gameCanvas").style.display = "none";
         clearInterval(gameInterval);
         clearInterval(countdownInterval);
     } else {
+        gameCanvas.style.filter = "none"; // Remove blur effect
+        scorecanvas.style.filter = "none";
+
         // Hide pause menu
         document.getElementById("gameCanvas").style.display = "block";
         document.getElementById("pause-menu").style.display = "none";
         document.getElementById("score").style.display = "block";
-
         startGame();
         startCountdown();
     }
@@ -318,6 +316,7 @@ function generateFood() {
             generateFood();
             break;
         }
+        // gameOver();
     }
 }
 
@@ -331,7 +330,7 @@ function gameOver() {
         collision() ||
         countdownSeconds == 0
     ) {
-        alert("Game Over!"); // temporary
+        // alert("Game Over!"); // temporary
         updateMaxScore();
         resetGame();
         return true;
@@ -343,7 +342,7 @@ function collision() {
     const head = snake[0];
     for (let i = 1; i < snake.length; i++) {
         if (head.x === snake[i].x && head.y === snake[i].y) {
-            alert("Game Over!");
+            // alert("Game Over!");
             return true;
         }
     }
@@ -397,11 +396,20 @@ function back() {
 
 function modes() {
     document.getElementById("menu").style.display = "none"; //hide menu
+    document.getElementById("gameCanvas").style.display = "none"; //hide score
     document.getElementById("game-mode").style.display = "block"; //show game mode menu
 }
 
 function showmenu() {
+    const gameCanvas = document.getElementById("gameCanvas");
+    const scorecanvas = document.getElementById("score");
+
+    song.pause();
+    gameCanvas.style.filter = "none"; // Apply blur effect
+    scorecanvas.style.filter = "none";
+    document.getElementById("gameCanvas").style.display = "none"; //hide score
     document.getElementById("pause-menu").style.display = "none"; //hide ingame menu
+    document.getElementById("score").style.display = "none"; //hide ingame menu
     document.getElementById("menu").style.display = "block "; //show menu
 }
 
